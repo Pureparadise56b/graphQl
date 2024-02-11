@@ -5,6 +5,15 @@ const queries = {
     const token = await UserService.getUserToken(email, password)
     return token
   },
+
+  getCurrentUser: async (_, {}, context) => {
+    if (Object.keys(context.user).length !== 0) {
+      return context.user
+    }
+
+    // throw new Error('User not found')
+    throw new Error("I don't know who are you")
+  },
 }
 const mutations = {
   createUser: async (_, { name, email, password }) => {

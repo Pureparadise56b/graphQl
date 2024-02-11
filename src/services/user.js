@@ -41,6 +41,14 @@ class UserService {
     )
     return token
   }
+
+  static async verifyUser(token) {
+    try {
+      return JWT.verify(token, jwtSecret)
+    } catch (error) {
+      return {}
+    }
+  }
 }
 
 export { UserService }
